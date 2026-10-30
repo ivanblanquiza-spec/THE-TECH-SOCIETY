@@ -1,1083 +1,494 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Tech-Society Chronicle | STS Academic Journal</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            800: '#1e293b',
-                            900: '#0f172a',
-                        },
-                        teal: {
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            700: '#0f766e',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'Georgia', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>The Tech-Society Chronicle | Science, Technology & Society</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, .serif-text { font-family: 'Merriweather', Georgia, serif; }
-        .modal-active { overflow: hidden; }
+        :root {
+            --primary-color: #0a192f;
+            --accent-color: #0077b6;
+            --highlight-color: #00b4d8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .navbar {
+            background-color: var(--primary-color);
+        }
+        .hero-section {
+            background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        .article-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen selection:bg-teal-500 selection:text-white">
-
-    <!-- Top Announcement Header -->
-    <div class="bg-teal-700 text-white text-xs py-1.5 px-4 text-center font-medium tracking-wide">
-        Saint Jude College Manila • College of Arts and Sciences • GEN 003: Science, Technology & Society
-    </div>
+<body>
 
     <!-- Navigation Bar -->
-    <header class="sticky top-0 z-40 bg-navy-900 text-white shadow-lg border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo / Brand Name -->
-                <a href="#home" class="flex items-center space-x-3">
-                    <div class="bg-teal-600 text-white p-2.5 rounded-lg shadow-md">
-                        <i class="fa-solid fa-newspaper text-2xl"></i>
-                    </div>
-                    <div>
-                        <span class="text-xl sm:text-2xl font-bold tracking-tight text-white block serif-text">THE TECH-SOCIETY</span>
-                        <span class="text-xs uppercase tracking-widest text-teal-400 font-semibold block">Chronicle • STS Journal</span>
-                    </div>
-                </a>
-
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex space-x-6 text-sm font-medium">
-                    <a href="#home" class="hover:text-teal-400 transition-colors py-1">Home</a>
-                    <a href="#headline" class="hover:text-teal-400 transition-colors py-1">Headline</a>
-                    <a href="#articles" class="hover:text-teal-400 transition-colors py-1">Articles</a>
-                    <a href="#ad-trends" class="hover:text-teal-400 transition-colors py-1">Ad Trends</a>
-                    <a href="#quiz" class="hover:text-teal-400 transition-colors py-1">Quiz Game</a>
-                    <a href="#staff" class="hover:text-teal-400 transition-colors py-1">Editorial Staff</a>
-                    <a href="#references" class="hover:text-teal-400 transition-colors py-1">References</a>
-                </nav>
-
-                <!-- Search Input -->
-                <div class="hidden md:block relative w-56">
-                    <input type="text" id="searchInput" placeholder="Search STS topics..." 
-                           class="w-full bg-slate-800 text-slate-200 text-sm rounded-full pl-9 pr-4 py-2 border border-slate-700 focus:outline-none focus:border-teal-500 transition-all placeholder-slate-400">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-sm"></i>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="lg:hidden text-slate-300 hover:text-white focus:outline-none text-2xl p-2" aria-label="Toggle Navigation">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-globe2 me-2"></i>The Tech-Society Chronicle</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#headline">Headline</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#articles">Articles</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quiz-section">Quiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#staff">Editorial Staff</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#references">References</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Search topics..." onkeyup="filterArticles()">
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <!-- Mobile Navigation Menu -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-navy-800 border-t border-slate-700 px-4 pt-3 pb-6 space-y-3 text-sm">
-            <div class="relative my-2">
-                <input type="text" id="mobileSearchInput" placeholder="Search STS topics..." 
-                       class="w-full bg-slate-900 text-slate-200 text-sm rounded-lg pl-9 pr-4 py-2 border border-slate-700 focus:outline-none focus:border-teal-500">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-sm"></i>
-            </div>
-            <a href="#home" class="mobile-nav-link block py-2 border-b border-slate-700/50 hover:text-teal-400">Home</a>
-            <a href="#headline" class="mobile-nav-link block py-2 border-b border-slate-700/50 hover:text-teal-400">Headline Article</a>
-            <a href="#articles" class="mobile-nav-link block py-2 border-b border-slate-700/50 hover:text-teal-400">Articles Directory</a>
-            <a href="#ad-trends" class="mobile-nav-link block py-2 border-b border-slate-700/50 hover:text-teal-400">Tech Ad Trends</a>
-            <a href="#quiz" class="mobile-nav-link block py-2 border-b border-slate-700/50 hover:text-teal-400">Interactive STS Quiz</a>
-            <a href="#staff" class="mobile-nav-link block py-2 border-b border-slate-700/50 hover:text-teal-400">Editorial Staff</a>
-            <a href="#references" class="mobile-nav-link block py-2 hover:text-teal-400">Academic References</a>
+    <!-- HERO / HEADLINE COVER -->
+    <header id="headline" class="hero-section text-center">
+        <div class="container">
+            <span class="badge bg-danger mb-3 text-uppercase px-3 py-2">Period 3 Headline Article</span>
+            <h1 class="display-4 fw-bold mb-3">The CRISPR Crossroads: Ethics of Gene Therapy & Stem Cell Research</h1>
+            <p class="lead mb-4 mx-auto" style="max-width: 800px;">
+                As human gene-editing technologies advance into clinical trials, society faces profound moral questions regarding germline modifications, genetic inequality, and the boundary of human intervention in nature.
+            </p>
+            <button class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#headlineModal">
+                <i class="bi bi-book-open me-2"></i>Read Full Headline Story
+            </button>
         </div>
     </header>
 
-    <main class="flex-grow">
-
-        <!-- 1. HOME / COVER SECTION -->
-        <section id="home" class="relative bg-navy-900 text-white py-16 lg:py-24 overflow-hidden border-b border-slate-800">
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#14b8a6_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-7 space-y-6">
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/10 text-teal-400 border border-teal-500/30">
-                            <i class="fa-solid fa-flask-vial mr-2"></i> 
-                        </span>
-                        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                            Analyzing the Interplay of <span class="text-teal-400 italic">Science, Technology</span> & Society
-                        </h1>
-                        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
-                            Welcome to <strong>The Tech-Society Chronicle</strong>—an educational web platform designed to inform, debate, and analyze critical technological disruptions, bioethical issues, biodiversity threats, and environmental policies.
-                        </p>
-                        <div class="flex flex-wrap gap-4 pt-2">
-                            <a href="#headline" class="bg-teal-600 hover:bg-teal-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition-all inline-flex items-center">
-                                Read Headline Story <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
-                            </a>
-                            <a href="#quiz" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold px-6 py-3 rounded-xl transition-all inline-flex items-center">
-                                Test Your Knowledge <i class="fa-solid fa-gamepad ml-2 text-sm"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Right Column Info Box -->
-                    <div class="lg:col-span-5">
-                        <div class="bg-slate-800/80 backdrop-blur border border-slate-700 p-6 rounded-2xl shadow-2xl space-y-4">
-                            <div class="flex items-center justify-between border-b border-slate-700 pb-3">
-                                <span class="text-xs font-bold uppercase text-teal-400 tracking-wider">P3 Syllabus Coverage</span>
-                                <span class="text-xs text-slate-400">Saint Jude College</span>
-                            </div>
-                            <ul class="space-y-3 text-sm text-slate-300">
-                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-teal-400 mt-1 mr-3 text-xs"></i> <span><strong>Gene Therapy & Stem Cells:</strong> Bioethics & DNA Editing</span></li>
-                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-teal-400 mt-1 mr-3 text-xs"></i> <span><strong>Nanotechnology:</strong> Cytotoxicity & Governance</span></li>
-                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-teal-400 mt-1 mr-3 text-xs"></i> <span><strong>Philippine Biodiversity:</strong> Ecological Vulnerability</span></li>
-                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-teal-400 mt-1 mr-3 text-xs"></i> <span><strong>Genetically Modified Organisms:</strong> Agricultural Ethics</span></li>
-                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-teal-400 mt-1 mr-3 text-xs"></i> <span><strong>Climate Change:</strong> Environmental vs Social Dimensions</span></li>
-                                <li class="flex items-start"><i class="fa-solid fa-circle-check text-teal-400 mt-1 mr-3 text-xs"></i> <span><strong>AI & Automation:</strong> Human Worker Displacement</span></li>
-                            </ul>
-                        </div>
+    <!-- MAIN ARTICLES CONTAINER -->
+    <main id="articles" class="container py-5">
+        <h2 class="text-center mb-5 fw-bold border-bottom pb-3">Special Reports & Period 3 Coverage</h2>
+        
+        <div class="row g-4" id="articleGrid">
+            
+            <!-- Article 1: Nanotechnology -->
+            <div class="col-md-4 article-item" data-title="ethical issues concerning nanotechnology nanomaterials">
+                <div class="card h-100 article-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Nanotechnology lab">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge bg-info text-dark mb-2 align-self-start">Nanotechnology</span>
+                        <h5 class="card-title fw-bold">Invisible Risks: Ethical Issues in Nanotechnology</h5>
+                        <p class="card-text text-muted small">Exploring ecotoxicity, workplace safety, and privacy concerns surrounding engineered nanoparticles and molecular sensors.</p>
+                        <button class="mt-auto btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#nanoModal">Read Article</button>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- 2. HEADLINE ARTICLE SECTION -->
-        <section id="headline" class="py-16 bg-white border-b border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="flex items-center space-x-3 mb-6">
-                    <span class="bg-red-600 text-white font-bold text-xs uppercase px-3 py-1 rounded">Headline</span>
-                    <span class="text-slate-500 text-sm font-medium"><i class="fa-regular fa-clock mr-1"></i> Topic 5 • Gene Therapy & Stem Cells</span>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                    <!-- Main Text -->
-                    <div class="lg:col-span-8 space-y-6">
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 leading-tight serif-text">
-                            Ethical and Social Issues of Gene Therapy and Stem Cell Research
-                        </h2>
-
-                        <div class="flex items-center space-x-4 text-xs text-slate-500 border-y border-slate-100 py-3">
-                            <span><i class="fa-solid fa-user-pen mr-1"></i> Researched by Ivan Blanquiza, Renz Barata, & Monamae Licay</span>
-                            <span>•</span>
-                            <span><i class="fa-solid fa-code mr-1"></i> Developed by Jamer Omandam & Anjo Cayabyab</span>
-                        </div>
-
-                        <div class="bg-navy-900 text-white p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
-                            <i class="fa-solid fa-dna text-8xl absolute -right-4 -bottom-4 text-teal-500/10"></i>
-                            <span class="text-xs font-bold uppercase tracking-widest text-teal-400">Core Issue Overview</span>
-                            <p class="mt-2 text-slate-200 leading-relaxed text-sm sm:text-base">
-                                As genomic techniques like CRISPR-Cas9 accelerate, humanity stands at a crossroads between curing debilitating hereditary conditions and opening the door to germline modification and genetic stratification.
-                            </p>
-                        </div>
-
-                        <div class="prose max-w-none text-slate-700 space-y-4 text-base leading-relaxed">
-                            <p>
-                                Gene therapy corrects mutated gene sequences directly responsible for disease, while stem cell therapeutics utilize pluripotent cells to regenerate damaged tissues. Despite incredible medical potential, these technologies provoke intense moral and social debates.
-                            </p>
-                            <h3 class="text-xl font-bold text-navy-900 pt-2">Primary Dilemmas & Social Concerns:</h3>
-                            <ul class="list-disc pl-5 space-y-2 text-sm sm:text-base">
-                                <li><strong>Germline vs. Somatic Editing:</strong> Somatic modifications affect only the individual patient. In contrast, germline alterations permanently change reproductive cells, passing edited DNA to future generations without their consent.</li>
-                                <li><strong>Embryonic Stem Cell Sourcing:</strong> The extraction of embryonic stem cells involves destroying early-stage blastocysts, triggering ethical arguments surrounding embryonic personhood.</li>
-                                <li><strong>Socio-Economic Disparity:</strong> Expensive genetic cures risk becoming accessible only to wealthy demographics, widening global health inequality.</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <button data-article-id="headline-modal" class="open-modal-btn bg-navy-900 hover:bg-slate-800 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors inline-flex items-center">
-                                Open Interactive Deep-Dive <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Sidebar Summary Box -->
-                    <div class="lg:col-span-4 space-y-6">
-                        <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm">
-                            <h3 class="font-bold text-navy-900 mb-4 text-base border-b border-slate-200 pb-2">Ethical Comparison Card</h3>
-                            
-                            <div class="space-y-4 text-xs sm:text-sm">
-                                <div>
-                                    <span class="font-bold text-teal-700 uppercase block text-xs">Medical Benefits</span>
-                                    <p class="text-slate-600 mt-1">Eradication of Huntington's disease, sickle cell anemia, organ regeneration, and targeted cancer treatments.</p>
-                                </div>
-                                <div class="border-t border-slate-200 pt-3">
-                                    <span class="font-bold text-red-600 uppercase block text-xs">Ethical Vulnerabilities</span>
-                                    <p class="text-slate-600 mt-1">Off-target genomic mutations, commercialization of embryonic tissues, and eugenic trends.</p>
-                                </div>
-                                <div class="border-t border-slate-200 pt-3">
-                                    <span class="font-bold text-navy-800 uppercase block text-xs">Governance Imperative</span>
-                                    <p class="text-slate-600 mt-1">Universal international bioethics regulations enforced by WHO and bioethics panels.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-teal-900 text-white p-6 rounded-2xl">
-                            <i class="fa-solid fa-quote-left text-3xl text-teal-400 mb-2"></i>
-                            <p class="text-xs sm:text-sm italic text-teal-100">
-                                "The power to edit human genes is the power to reshape our species. It demands extreme humility, transparency, and social justice."
-                            </p>
-                        </div>
+            <!-- Article 2: Philippine Biodiversity -->
+            <div class="col-md-4 article-item" data-title="threats to biodiversity and the healthy society philippines">
+                <div class="card h-100 article-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Philippine Forest and Wildlife">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge bg-success mb-2 align-self-start">Biodiversity</span>
+                        <h5 class="card-title fw-bold">Fragile Edges: Threats to Philippine Biodiversity</h5>
+                        <p class="card-text text-muted small">Deforestation, illegal wildlife trade, and coral reef degradation threaten public health and ecological balance across the archipelago.</p>
+                        <button class="mt-auto btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#bioModal">Read Article</button>
                     </div>
                 </div>
-
             </div>
-        </section>
 
-        <!-- 3. ARTICLES DIRECTORY SECTION (5 Articles) -->
-        <section id="articles" class="py-16 bg-slate-100 border-b border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
-                    <div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-teal-600">Educational Articles Directory</span>
-                        <h2 class="text-3xl font-extrabold text-navy-900 mt-1 serif-text">Period 3 Topics & Case Studies</h2>
+            <!-- Article 3: GMOs -->
+            <div class="col-md-4 article-item" data-title="ethical implications of gmos to human health society">
+                <div class="card h-100 article-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Agricultural Biotechnology GMO">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge bg-warning text-dark mb-2 align-self-start">Biotechnology</span>
+                        <h5 class="card-title fw-bold">Harvesting Controversy: Ethical Implications of GMOs</h5>
+                        <p class="card-text text-muted small">Weighing nutritional benefits like Golden Rice against corporate seed monopolies and biosafety uncertainties.</p>
+                        <button class="mt-auto btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#gmoModal">Read Article</button>
                     </div>
-                    <p class="text-slate-600 text-sm mt-2 md:mt-0">Click any article to read the complete research paper.</p>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                    <!-- Article 1 -->
-                    <div class="article-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between text-xs font-semibold text-indigo-600 mb-2">
-                                <span><i class="fa-solid fa-atom mr-1"></i> Topic 1</span>
-                                <span>Nanotechnology</span>
-                            </div>
-                            <h3 class="article-title text-xl font-bold text-navy-900 mb-3 serif-text">Ethical Issues Concerning Nanotechnology</h3>
-                            <p class="article-desc text-slate-600 text-sm leading-relaxed mb-4">
-                                Explores microscopic material engineering, environmental cytotoxicity, health risks of inhaled nanoparticles, and regulatory frameworks.
-                            </p>
-                        </div>
-                        <div class="p-6 pt-0">
-                            <button data-article-id="article-1" class="open-modal-btn w-full bg-slate-100 hover:bg-teal-600 hover:text-white text-slate-800 text-sm font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center">
-                                Read Full Article <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Article 2 -->
-                    <div class="article-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between text-xs font-semibold text-emerald-600 mb-2">
-                                <span><i class="fa-solid fa-leaf mr-1"></i> Topic 2</span>
-                                <span>Biodiversity</span>
-                            </div>
-                            <h3 class="article-title text-xl font-bold text-navy-900 mb-3 serif-text">Threats to Biodiversity & Healthy Society</h3>
-                            <p class="article-desc text-slate-600 text-sm leading-relaxed mb-4">
-                                Analyzes deforestation, habitat fragmentation, overexploitation, and invasive species in Philippine ecosystems.
-                            </p>
-                        </div>
-                        <div class="p-6 pt-0">
-                            <button data-article-id="article-2" class="open-modal-btn w-full bg-slate-100 hover:bg-teal-600 hover:text-white text-slate-800 text-sm font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center">
-                                Read Full Article <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Article 3 -->
-                    <div class="article-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between text-xs font-semibold text-amber-600 mb-2">
-                                <span><i class="fa-solid fa-wheat-awn mr-1"></i> Topic 3</span>
-                                <span>Agriculture & GMOs</span>
-                            </div>
-                            <h3 class="article-title text-xl font-bold text-navy-900 mb-3 serif-text">Ethical Implications of GMOs</h3>
-                            <p class="article-desc text-slate-600 text-sm leading-relaxed mb-4">
-                                Examines agricultural enhancements like Bt Corn and Golden Rice versus cross-pollination risks and food security ethics.
-                            </p>
-                        </div>
-                        <div class="p-6 pt-0">
-                            <button data-article-id="article-3" class="open-modal-btn w-full bg-slate-100 hover:bg-teal-600 hover:text-white text-slate-800 text-sm font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center">
-                                Read Full Article <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Article 4 -->
-                    <div class="article-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between text-xs font-semibold text-sky-600 mb-2">
-                                <span><i class="fa-solid fa-earth-americas mr-1"></i> Topic 4</span>
-                                <span>Climate Science</span>
-                            </div>
-                            <h3 class="article-title text-xl font-bold text-navy-900 mb-3 serif-text">Climate Change: Environmental or Social?</h3>
-                            <p class="article-desc text-slate-600 text-sm leading-relaxed mb-4">
-                                Investigates global warming as a socio-economic justice crisis impacting vulnerable frontline coastal communities.
-                            </p>
-                        </div>
-                        <div class="p-6 pt-0">
-                            <button data-article-id="article-4" class="open-modal-btn w-full bg-slate-100 hover:bg-teal-600 hover:text-white text-slate-800 text-sm font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center">
-                                Read Full Article <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Article 5 -->
-                    <div class="article-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between text-xs font-semibold text-purple-600 mb-2">
-                                <span><i class="fa-solid fa-robot mr-1"></i> Supplemental Topic</span>
-                                <span>AI & Automation</span>
-                            </div>
-                            <h3 class="article-title text-xl font-bold text-navy-900 mb-3 serif-text">Human Displacement via Tech Advancement</h3>
-                            <p class="article-desc text-slate-600 text-sm leading-relaxed mb-4">
-                                Evaluates artificial intelligence, robotics in manufacturing, workforce displacement, and reskilling initiatives.
-                            </p>
-                        </div>
-                        <div class="p-6 pt-0">
-                            <button data-article-id="article-5" class="open-modal-btn w-full bg-slate-100 hover:bg-teal-600 hover:text-white text-slate-800 text-sm font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center">
-                                Read Full Article <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
-        </section>
 
-        <!-- 4. ADVERTISEMENT / AD TRENDS SECTION -->
-        <section id="ad-trends" class="py-16 bg-white border-b border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
-                        Sponsored Innovation Trends
-                    </span>
-                    <h2 class="text-3xl font-extrabold text-navy-900 mt-3 serif-text">Latest Technological Trends</h2>
-                    <p class="text-slate-600 text-sm mt-2">Explore interactive showcases of emerging technologies shaping society today.</p>
+            <!-- Article 4: Climate Change -->
+            <div class="col-md-4 article-item" data-title="climate change environmental issue or social issue">
+                <div class="card h-100 article-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Climate Change Weather">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge bg-danger mb-2 align-self-start">Climate Justice</span>
+                        <h5 class="card-title fw-bold">More Than Weather: Climate Change as a Social Issue</h5>
+                        <p class="card-text text-muted small">Analyzing how climate vulnerability disproportionately affects marginalized communities and developing island nations.</p>
+                        <button class="mt-auto btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#climateModal">Read Article</button>
+                    </div>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <!-- Ad Card 1 -->
-                    <div class="bg-gradient-to-br from-slate-900 to-navy-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-teal-500 text-navy-900 font-extrabold text-[10px] uppercase px-2.5 py-1 rounded">Tech Trend Ad</span>
-                                <i class="fa-solid fa-microchip text-teal-400 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">AI Neural Diagnostics</h3>
-                            <p class="text-slate-300 text-xs leading-relaxed mb-4">
-                                Revolutionizing clinical health screening with real-time genetic pattern analysis and predictive pathology.
-                            </p>
-                        </div>
-                        <button data-ad-id="ad-1" class="open-ad-btn w-full bg-teal-600 hover:bg-teal-500 text-white text-xs font-bold py-2.5 rounded-lg transition-colors">
-                            Explore Commercial Specs
-                        </button>
-                    </div>
-
-                    <!-- Ad Card 2 -->
-                    <div class="bg-gradient-to-br from-slate-900 to-navy-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-teal-500 text-navy-900 font-extrabold text-[10px] uppercase px-2.5 py-1 rounded">Tech Trend Ad</span>
-                                <i class="fa-solid fa-solar-panel text-teal-400 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Bio-Solar Grid Cells</h3>
-                            <p class="text-slate-300 text-xs leading-relaxed mb-4">
-                                Next-gen organic photovoltaic cells utilizing photosynthetic proteins for 40% higher urban clean energy capture.
-                            </p>
-                        </div>
-                        <button data-ad-id="ad-2" class="open-ad-btn w-full bg-teal-600 hover:bg-teal-500 text-white text-xs font-bold py-2.5 rounded-lg transition-colors">
-                            Explore Commercial Specs
-                        </button>
-                    </div>
-
-                    <!-- Ad Card 3 -->
-                    <div class="bg-gradient-to-br from-slate-900 to-navy-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-center mb-4">
-                                <span class="bg-teal-500 text-navy-900 font-extrabold text-[10px] uppercase px-2.5 py-1 rounded">Tech Trend Ad</span>
-                                <i class="fa-solid fa-dna text-teal-400 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">CRISPR Crop Shields</h3>
-                            <p class="text-slate-300 text-xs leading-relaxed mb-4">
-                                Drought-resistant bio-engineered agricultural seeds providing climate-resilient staple yields worldwide.
-                            </p>
-                        </div>
-                        <button data-ad-id="ad-3" class="open-ad-btn w-full bg-teal-600 hover:bg-teal-500 text-white text-xs font-bold py-2.5 rounded-lg transition-colors">
-                            Explore Commercial Specs
-                        </button>
-                    </div>
-
-                </div>
-
             </div>
-        </section>
 
-        <!-- 5. INTERACTIVE QUIZ SECTION -->
-        <section id="quiz" class="py-16 bg-slate-50 border-b border-slate-200">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center mb-10">
-                    <span class="text-xs font-bold uppercase tracking-widest text-teal-600 bg-teal-100/60 px-3 py-1 rounded-full">Interactive Assessment</span>
-                    <h2 class="text-3xl font-extrabold text-navy-900 mt-2 serif-text">How Well Do You Know STS Concepts?</h2>
-                    <p class="text-slate-600 text-sm mt-1">Answer all 5 questions below based on our Period 3 learning material.</p>
+            <!-- Article 5: Tech Trends & AI Ethics -->
+            <div class="col-md-4 article-item" data-title="artificial intelligence ethics modern technology trends">
+                <div class="card h-100 article-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Artificial Intelligence Ethics">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge bg-secondary mb-2 align-self-start">Digital Trends</span>
+                        <h5 class="card-title fw-bold">Algorithmic Bias: The Ethics of Automated Decision Making</h5>
+                        <p class="card-text text-muted small">Examining how machine learning algorithms perpetuate societal prejudice and the push for transparent AI governance.</p>
+                        <button class="mt-auto btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#aiModal">Read Article</button>
+                    </div>
                 </div>
-
-                <form id="stsQuizForm" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-8">
-                    
-                    <!-- Question 1 -->
-                    <div class="space-y-3">
-                        <p class="font-bold text-navy-900 text-sm sm:text-base">1. What is the key distinction between somatic and germline gene editing?</p>
-                        <div class="space-y-2 text-xs sm:text-sm text-slate-700">
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q1" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Somatic editing affects future generations; germline affects only the current patient.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q1" value="correct" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Germline editing alters reproductive cells passed to future offspring, whereas somatic affects non-reproductive cells.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q1" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Neither somatic nor germline editing alters DNA sequences.</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Question 2 -->
-                    <div class="space-y-3 border-t border-slate-100 pt-6">
-                        <p class="font-bold text-navy-900 text-sm sm:text-base">2. Which primary concern is linked to nanomaterial exposure in the environment?</p>
-                        <div class="space-y-2 text-xs sm:text-sm text-slate-700">
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q2" value="correct" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Microscopic cytotoxicity, bioaccumulation, and respiratory toxicity due to high surface area.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q2" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Immediate cooling of atmospheric ocean currents.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q2" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Complete immunity to bacterial infection.</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Question 3 -->
-                    <div class="space-y-3 border-t border-slate-100 pt-6">
-                        <p class="font-bold text-navy-900 text-sm sm:text-base">3. Why is Golden Rice bioengineered with beta-carotene?</p>
-                        <div class="space-y-2 text-xs sm:text-sm text-slate-700">
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q3" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>To increase crop size for commercial exports.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q3" value="correct" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>To combat Vitamin A Deficiency (VAD) in developing regions.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q3" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>To allow crops to grow underwater.</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Question 4 -->
-                    <div class="space-y-3 border-t border-slate-100 pt-6">
-                        <p class="font-bold text-navy-900 text-sm sm:text-base">4. Why is Climate Change considered a social issue as well as an environmental one?</p>
-                        <div class="space-y-2 text-xs sm:text-sm text-slate-700">
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q4" value="correct" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>It disproportionately impacts marginalized populations, causing displacement, economic loss, and health inequality.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q4" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>It only impacts wildlife and has no bearing on human societies.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q4" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Because it is exclusively caused by natural solar cycles.</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Question 5 -->
-                    <div class="space-y-3 border-t border-slate-100 pt-6">
-                        <p class="font-bold text-navy-900 text-sm sm:text-base">5. What is the main societal risk of rapid AI and automation adoption?</p>
-                        <div class="space-y-2 text-xs sm:text-sm text-slate-700">
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q5" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Excess availability of manual labor jobs.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q5" value="correct" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Human worker displacement without adequate safety nets or retraining pathways.</span>
-                            </label>
-                            <label class="flex items-start space-x-3 p-3 rounded-lg border border-slate-100 hover:bg-slate-50 cursor-pointer">
-                                <input type="radio" name="q5" value="wrong" class="mt-0.5 text-teal-600 focus:ring-teal-500">
-                                <span>Total eradication of software programming languages.</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Actions & Scoring -->
-                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
-                        <div class="flex space-x-3 w-full sm:w-auto">
-                            <button type="button" id="submitQuizBtn" class="bg-teal-600 hover:bg-teal-500 text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors w-full sm:w-auto">
-                                Submit Answers
-                            </button>
-                            <button type="button" id="resetQuizBtn" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold text-sm px-4 py-3 rounded-xl transition-colors">
-                                Reset
-                            </button>
-                        </div>
-                        <div id="quizScoreBox" class="hidden w-full sm:w-auto p-4 rounded-xl text-center font-bold text-sm"></div>
-                    </div>
-
-                </form>
-
             </div>
-        </section>
 
-        <!-- 6. EDITORIAL STAFF SECTION -->
-        <section id="staff" class="py-16 bg-white border-b border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
-                        Academic Editorial Board
-                    </span>
-                    <h2 class="text-3xl font-extrabold text-navy-900 mt-3 serif-text">Development & Research Team</h2>
-                    <p class="text-slate-600 text-sm mt-1">GEN 003 Performance Task Student Panel & Technical Authors</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    
-                    <!-- CODERS CARD -->
-                    <div class="bg-slate-50 border-2 border-teal-500/30 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
-                        <div class="flex items-center space-x-3 border-b border-slate-200 pb-4">
-                            <div class="bg-teal-600 text-white p-3 rounded-xl shadow-sm">
-                                <i class="fa-solid fa-code text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-extrabold text-navy-900 text-lg">Web Coders & Developers</h3>
-                                <p class="text-xs text-teal-600 font-semibold uppercase tracking-wider">Engineering & Deployment</p>
-                            </div>
-                        </div>
-
-                        <div class="space-y-4">
-                            <!-- Coder 1 -->
-                            <div class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-navy-900 text-teal-400 font-bold rounded-lg flex items-center justify-center text-sm">
-                                        JO
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-navy-900 text-sm">Jamer Omandam</h4>
-                                        <p class="text-xs text-slate-500">Lead Web Developer & UI Designer</p>
-                                    </div>
-                                </div>
-                                <button data-staff-id="coder-1" class="open-staff-btn text-xs text-teal-600 hover:text-teal-700 font-bold bg-teal-50 px-3 py-1.5 rounded-md border border-teal-200">
-                                    Profile
-                                </button>
-                            </div>
-
-                            <!-- Coder 2 -->
-                            <div class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-navy-900 text-teal-400 font-bold rounded-lg flex items-center justify-center text-sm">
-                                        AC
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-navy-900 text-sm">Anjo Cayabyab</h4>
-                                        <p class="text-xs text-slate-500">Full-Stack Integrator & Vercel Specialist</p>
-                                    </div>
-                                </div>
-                                <button data-staff-id="coder-2" class="open-staff-btn text-xs text-teal-600 hover:text-teal-700 font-bold bg-teal-50 px-3 py-1.5 rounded-md border border-teal-200">
-                                    Profile
-                                </button>
-                            </div>
-                        </div>
+            <!-- Article 6: Renewable Energy Transition -->
+            <div class="col-md-4 article-item" data-title="renewable energy sustainable society technology">
+                <div class="card h-100 article-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Renewable Energy Solar Wind">
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge bg-success mb-2 align-self-start">Sustainability</span>
+                        <h5 class="card-title fw-bold">Powering Tomorrow: The Socio-Economic Shift to Renewables</h5>
+                        <p class="card-text text-muted small">How solar, wind, and geothermal transitions redefine global labor markets and geopolitical power structures.</p>
+                        <button class="mt-auto btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#energyModal">Read Article</button>
                     </div>
-
-                    <!-- RESEARCHERS CARD -->
-                    <div class="bg-slate-50 border-2 border-indigo-500/30 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
-                        <div class="flex items-center space-x-3 border-b border-slate-200 pb-4">
-                            <div class="bg-indigo-600 text-white p-3 rounded-xl shadow-sm">
-                                <i class="fa-solid fa-book-open text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-extrabold text-navy-900 text-lg">STS Content Researchers</h3>
-                                <p class="text-xs text-indigo-600 font-semibold uppercase tracking-wider">Research & Article Writers</p>
-                            </div>
-                        </div>
-
-                        <div class="space-y-4">
-                            <!-- Researcher 1 -->
-                            <div class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-navy-900 text-indigo-400 font-bold rounded-lg flex items-center justify-center text-sm">
-                                        IB
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-navy-900 text-sm">Ivan Blanquiza</h4>
-                                        <p class="text-xs text-slate-500">Lead STS Researcher & Fact Checker</p>
-                                    </div>
-                                </div>
-                                <button data-staff-id="researcher-1" class="open-staff-btn text-xs text-indigo-600 hover:text-indigo-700 font-bold bg-indigo-50 px-3 py-1.5 rounded-md border border-indigo-200">
-                                    Profile
-                                </button>
-                            </div>
-
-                            <!-- Researcher 2 -->
-                            <div class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-navy-900 text-indigo-400 font-bold rounded-lg flex items-center justify-center text-sm">
-                                        RB
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-navy-900 text-sm">Renz Barata</h4>
-                                        <p class="text-xs text-slate-500">Content Analyst & Case Study Writer</p>
-                                    </div>
-                                </div>
-                                <button data-staff-id="researcher-2" class="open-staff-btn text-xs text-indigo-600 hover:text-indigo-700 font-bold bg-indigo-50 px-3 py-1.5 rounded-md border border-indigo-200">
-                                    Profile
-                                </button>
-                            </div>
-
-                            <!-- Researcher 3 -->
-                            <div class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-10 h-10 bg-navy-900 text-indigo-400 font-bold rounded-lg flex items-center justify-center text-sm">
-                                        ML
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-navy-900 text-sm">Monamae Licay</h4>
-                                        <p class="text-xs text-slate-500">Ethical Issues & Citation Specialist</p>
-                                    </div>
-                                </div>
-                                <button data-staff-id="researcher-3" class="open-staff-btn text-xs text-indigo-600 hover:text-indigo-700 font-bold bg-indigo-50 px-3 py-1.5 rounded-md border border-indigo-200">
-                                    Profile
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
-        </section>
 
-        <!-- 7. APA REFERENCES SECTION -->
-        <section id="references" class="py-16 bg-navy-900 text-slate-200 border-t border-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="mb-10 pb-4 border-b border-slate-800">
-                    <span class="text-xs font-bold uppercase tracking-widest text-teal-400"><i class="fa-solid fa-book-bookmark mr-1"></i> Academic Bibliography</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1 serif-text">APA 7th Edition Citations</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs leading-relaxed font-sans">
-                    
-                    <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700/70 space-y-3">
-                        <div class="flex items-center space-x-2 text-teal-400 font-bold border-b border-slate-700 pb-2">
-                            <i class="fa-solid fa-dna"></i>
-                            <span>Gene Therapy & Stem Cells</span>
-                        </div>
-                        <ul class="space-y-3 text-slate-300">
-                            <li class="pl-4 -indent-4">
-                                Doudna, J. A., & Charpentier, E. (2014). The new frontier of genome engineering with CRISPR-Cas9. <em>Science</em>, 346(6213), 1258096. https://doi.org/10.1126/science.1258096
-                            </li>
-                            <li class="pl-4 -indent-4">
-                                World Health Organization. (2021). <em>WHO guidance on human genome editing: Governance and oversight framework</em>. World Health Organization.
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700/70 space-y-3">
-                        <div class="flex items-center space-x-2 text-indigo-400 font-bold border-b border-slate-700 pb-2">
-                            <i class="fa-solid fa-atom"></i>
-                            <span>Nanotechnology Governance</span>
-                        </div>
-                        <ul class="space-y-3 text-slate-300">
-                            <li class="pl-4 -indent-4">
-                                Allhoff, F., Lin, P., & Moore, D. (2010). <em>What is nanotechnology and why does it matter? From science to ethics</em>. Wiley-Blackwell.
-                            </li>
-                            <li class="pl-4 -indent-4">
-                                Nel, A., Xia, T., Mädler, L., & Li, N. (2006). Toxic potential of materials at the nanolevel. <em>Science</em>, 311(5761), 622-627.
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700/70 space-y-3">
-                        <div class="flex items-center space-x-2 text-emerald-400 font-bold border-b border-slate-700 pb-2">
-                            <i class="fa-solid fa-leaf"></i>
-                            <span>Philippine Biodiversity</span>
-                        </div>
-                        <ul class="space-y-3 text-slate-300">
-                            <li class="pl-4 -indent-4">
-                                Department of Environment and Natural Resources (DENR-BMB). (2020). <em>Philippine Biodiversity Strategy and Action Plan (PBSAP) 2015–2028</em>. DENR Biodiversity Management Bureau.
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700/70 space-y-3">
-                        <div class="flex items-center space-x-2 text-amber-400 font-bold border-b border-slate-700 pb-2">
-                            <i class="fa-solid fa-wheat-awn"></i>
-                            <span>GMOs & Agriculture</span>
-                        </div>
-                        <ul class="space-y-3 text-slate-300">
-                            <li class="pl-4 -indent-4">
-                                Food and Agriculture Organization (FAO). (2020). <em>Biotechnology in agriculture and food security in developing regions</em>. FAO UN Reports.
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
+        </div>
     </main>
 
+    <!-- ADVERTISEMENT SECTION -->
+    <section class="container my-5">
+        <div class="p-4 bg-light border border-2 border-dashed rounded text-center shadow-sm">
+            <span class="badge bg-secondary mb-2">ADVERTISEMENT</span>
+            <h4 class="fw-bold text-primary">EcoPulse: The Future of Sustainable Smart Devices</h4>
+            <p class="text-muted mb-3">Discover zero-carbon smartphones built from 100% recycled ocean plastics and biodegradable circuit boards. Empower your digital footprint today.</p>
+            <a href="#" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#adModal">Learn More</a>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE QUIZ SECTION -->
+    <section id="quiz-section" class="container my-5 py-5 bg-white rounded shadow-sm px-4">
+        <h2 class="text-center fw-bold mb-4"><i class="bi bi-question-circle text-primary me-2"></i>STS Knowledge Check Quiz</h2>
+        <p class="text-center text-muted mb-4">Test your understanding of Science, Technology & Society concepts covered in Period 3.</p>
+        
+        <form id="stsQuiz">
+            <!-- Q1 -->
+            <div class="mb-4">
+                <label class="fw-bold">1. Which branch of technology manipulates matter on an atomic and molecular scale, raising potential ecotoxicity concerns?</label>
+                <div class="form-check mt-2"><input class="form-check-input" type="radio" name="q1" value="wrong"><label class="form-check-label">Macro-engineering</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="correct"><label class="form-check-label">Nanotechnology</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="wrong"><label class="form-check-label">Geothermal technology</label></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="mb-4">
+                <label class="fw-bold">2. Why is Climate Change characterized not just as an environmental crisis, but as a social issue?</label>
+                <div class="form-check mt-2"><input class="form-check-input" type="radio" name="q2" value="wrong"><label class="form-check-label">Because it only affects animals in remote regions.</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="correct"><label class="form-check-label">Because developing nations and marginalized communities suffer the worst impacts despite contributing least.</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="wrong"><label class="form-check-label">Because weather satellites are controlled by social media companies.</label></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="mb-4">
+                <label class="fw-bold">3. What is a primary ethical concern surrounding human germline gene editing (e.g., CRISPR)?</label>
+                <div class="form-check mt-2"><input class="form-check-input" type="radio" name="q3" value="correct"><label class="form-check-label">Modifications are heritable, permanently passing alterations to future generations without their consent.</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="wrong"><label class="form-check-label">It makes internet connection speeds too slow.</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="wrong"><label class="form-check-label">It prevents doctors from using stethoscopes.</label></div>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-primary px-5 py-2" onclick="gradeQuiz()">Submit Quiz</button>
+                <div id="quizResult" class="mt-3 fw-bold fs-5"></div>
+            </div>
+        </form>
+    </section>
+
+    <!-- EDITORIAL STAFF SECTION -->
+    <section id="staff" class="container py-5">
+        <h2 class="text-center mb-4 border-bottom pb-2">Editorial Staff & Research Team</h2>
+        <div class="row g-4 justify-content-center">
+            
+            <!-- Coders -->
+            <div class="col-md-5">
+                <div class="card h-100 shadow-sm border-primary">
+                    <div class="card-header bg-primary text-white text-center fw-bold">
+                        Lead Web Coders & Developers
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-code-slash text-primary me-3 fs-4"></i>
+                                <div>
+                                    <strong>Jamer Omandam</strong><br>
+                                    <small class="text-muted">Front-End Developer & UI Designer</small>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-code-slash text-primary me-3 fs-4"></i>
+                                <div>
+                                    <strong>Anjo Cayabyab</strong><br>
+                                    <small class="text-muted">Full-Stack Integration & Deployment Specialist</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Researchers -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-info">
+                    <div class="card-header bg-info text-dark text-center fw-bold">
+                        STS Content Researchers & Science Writers
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-journal-text text-info me-3 fs-4"></i>
+                                <div>
+                                    <strong>Ivan Blanquiza</strong><br>
+                                    <small class="text-muted">Lead STS Researcher & Fact Checker</small>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-journal-text text-info me-3 fs-4"></i>
+                                <div>
+                                    <strong>Renz Barata</strong><br>
+                                    <small class="text-muted">Content Analyst & Article Author</small>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-journal-text text-info me-3 fs-4"></i>
+                                <div>
+                                    <strong>Monamae Licay</strong><br>
+                                    <small class="text-muted">Ethical Issues & Bibliography Specialist</small>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-journal-text text-info me-3 fs-4"></i>
+                                <div>
+                                    <strong>Cj Habelita</strong><br>
+                                    <small class="text-muted">Environmental & Social Impact Analyst</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- REFERENCES / BIBLIOGRAPHY SECTION -->
+    <section id="references" class="container py-5 bg-white rounded shadow-sm px-4 my-5">
+        <h2 class="mb-4 border-bottom pb-2"><i class="bi bi-journal-bookmark-fill text-primary me-2"></i>References & Academic Bibliography</h2>
+        <p class="text-muted mb-4">Academic sources and literature supporting research on Science, Technology, and Society (APA 7th Edition format):</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Doudna, J. A., & Sternberg, R. E. (2017). <em>A crack in creation: Gene editing and the unthinkable power to control evolution</em>. Houghton Mifflin Harcourt.</li>
+            <li class="list-group-item">Intergovernmental Panel on Climate Change (IPCC). (2022). <em>Climate Change 2022: Impacts, Adaptation and Vulnerability</em>. Cambridge University Press.</li>
+            <li class="list-group-item">National Academy of Sciences, Engineering, and Medicine. (2019). <em>Forest Health and Biotechnology: Possibilities and Considerations</em>. The National Academies Press. https://doi.org/10.17226/25221</li>
+            <li class="list-group-item">UNESCO. (2017). <em>Ethics of Science and Technology: Ethics of Nanotechnology</em>. UNESCO Digital Library.</li>
+            <li class="list-group-item">World Health Organization. (2021). <em>WHO guidance on approving human genome editing for public health</em>. World Health Organization.</li>
+        </ul>
+    </section>
+
     <!-- FOOTER -->
-    <footer class="bg-navy-900 border-t border-slate-800 text-slate-400 py-8 text-xs text-center">
-        <div class="max-w-7xl mx-auto px-4 space-y-2">
-            <p class="serif-text text-slate-200 text-sm font-semibold">The Tech-Society Chronicle</p>
-            <p>Saint Jude College Manila • GEN 003 STS Performance Task</p>
+    <footer class="text-center py-4">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 The Tech-Society Chronicle | Saint Jude College - Manila (GEN 003)</p>
+            <small class="text-white-50">All rights reserved. Designed for educational purposes.</small>
         </div>
     </footer>
 
-    <!-- REUSABLE MODAL CONTAINER -->
-    <div id="modalOverlay" class="fixed inset-0 bg-navy-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white text-slate-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden border border-slate-200">
-            <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
-                <div id="modalCategory" class="text-xs font-bold uppercase tracking-wider text-teal-600">Article Reader</div>
-                <button id="closeModalBtn" class="text-slate-400 hover:text-slate-700 text-xl focus:outline-none p-1">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div id="modalBody" class="p-6 overflow-y-auto space-y-4 text-sm sm:text-base leading-relaxed text-slate-700">
-                <!-- Modal content dynamically injected -->
-            </div>
-            <div class="p-4 border-t border-slate-100 bg-slate-50 flex justify-end">
-                <button id="closeModalFooterBtn" class="bg-navy-900 hover:bg-slate-800 text-white font-semibold text-xs px-5 py-2.5 rounded-lg transition-colors">
-                    Close Window
-                </button>
+    <!-- MODALS FOR ARTICLES -->
+    <!-- Headline Modal -->
+    <div class="modal fade" id="headlineModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">The CRISPR Crossroads: Gene Therapy & Stem Cell Research</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-3" alt="Genetics lab">
+                    <p>Gene therapy and stem cell research represent monumental breakthroughs in modern medicine, offering potential cures for hereditary genetic disorders, degenerative diseases, and various cancers. However, technologies such as CRISPR-Cas9 have opened unprecedented ethical dilemmas.</p>
+                    <h6 class="fw-bold mt-3">Somatic vs. Germline Editing</h6>
+                    <p>While somatic cell editing affects only the treated individual and is widely accepted for therapeutic purposes, germline editing alters embryos, sperm, or eggs. These modifications are heritable, passing biological changes onto future generations without their consent.</p>
+                    <h6 class="fw-bold mt-3">Socio-Economic Implications</h6>
+                    <p>The high cost of advanced gene therapies threatens to create profound healthcare disparities, where only affluent populations can afford genetic enhancements, leading to biological stratification.</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- Nano Modal -->
+    <div class="modal fade" id="nanoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-dark">
+                    <h5 class="modal-title">Invisible Risks: Ethical Issues in Nanotechnology</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-3" alt="Nanotech">
+                    <p>Nanotechnology involves manipulating matter at dimensions between 1 and 100 nanometers. While promising breakthroughs in drug delivery and electronics, engineered nanoparticles present unique environmental and health hazards.</p>
+                    <h6 class="fw-bold mt-3">Ecotoxicity and Health Hazards</h6>
+                    <p>Due to their microscopic size, nanoparticles can penetrate biological cell membranes and accumulate in organs or enter aquatic food chains with unknown long-term toxicity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bio Modal -->
+    <div class="modal fade" id="bioModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Fragile Edges: Threats to Philippine Biodiversity</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-3" alt="Biodiversity">
+                    <p>The Philippine archipelago is one of the world's primary megadiverse hotspots. However, deforestation, illegal wildlife poaching, and coastal destruction endanger endemic species like the Philippine Eagle and Tamaraw.</p>
+                    <h6 class="fw-bold mt-3">Societal Impact</h6>
+                    <p>Loss of biodiversity disrupts watershed stability, increases vulnerability to natural disasters, and threatens indigenous communities whose livelihoods depend directly on forest and marine ecosystems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GMO Modal -->
+    <div class="modal fade" id="gmoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title">Harvesting Controversy: Ethical Implications of GMOs</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-3" alt="GMO">
+                    <p>Genetically Modified Organisms (GMOs) in agriculture offer solutions to food insecurity, pest resistance, and micronutrient deficiencies (such as Vitamin A-enriched Golden Rice).</p>
+                    <h6 class="fw-bold mt-3">Corporate Control and Ecosystem Risks</h6>
+                    <p>Critics point to intellectual property laws that patent seeds, creating financial dependencies for smallholder farmers, alongside potential risks of cross-pollination with wild plant relatives.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Climate Modal -->
+    <div class="modal fade" id="climateModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">More Than Weather: Climate Change as a Social Issue</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-3" alt="Climate">
+                    <p>Climate change is fundamentally a social justice issue. While industrialized nations have historically emitted the largest volume of greenhouse gases, developing countries in Southeast Asia bear the brunt of catastrophic typhoons and rising sea levels.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Modal -->
+    <div class="modal fade" id="aiModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-secondary text-white">
+                    <h5 class="modal-title">Algorithmic Bias: The Ethics of Automated Decision Making</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-3" alt="AI Ethics">
+                    <p>Artificial intelligence systems trained on historical data frequently replicate and amplify human prejudices in hiring, law enforcement, and credit scoring. Ethical governance requires rigorous algorithmic transparency and accountability.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Energy Modal -->
+    <div class="modal fade" id="energyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Powering Tomorrow: The Socio-Economic Shift to Renewables</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-3" alt="Renewable Energy">
+                    <p>Transitioning from fossil fuels to solar, wind, and geothermal energy transforms labor markets, requiring workforce retraining while dismantling centralized carbon monopolies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ad Modal -->
+    <div class="modal fade" id="adModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title">EcoPulse Technology Feature</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded mb-3" alt="Eco Tech">
+                    <p>EcoPulse is leading the green electronics revolution. Learn how closed-loop manufacturing is eliminating electronic waste across global tech markets.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript for Search and Quiz -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        function filterArticles() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('article-item');
             
-            // Modal Elements
-            const modalOverlay = document.getElementById('modalOverlay');
-            const modalCategory = document.getElementById('modalCategory');
-            const modalBody = document.getElementById('modalBody');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const closeModalFooterBtn = document.getElementById('closeModalFooterBtn');
-
-            // Mobile Navigation Toggle
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                mobileNavLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
-                    });
-                });
-            }
-
-            // Article Database for Modals
-            const articleContent = {
-                'headline-modal': {
-                    category: 'Headline Feature • Bioethics',
-                    title: 'Gene Therapy and Stem Cell Research: Comprehensive Analysis',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">Gene Therapy & Stem Cell Research: The Ethical Frontier</h3>
-                        <p class="text-xs text-slate-500 mb-4">Researched by Ivan Blanquiza, Renz Barata, & Monamae Licay</p>
-                        <p><strong>Gene therapy</strong> seeks to alter genetic material to prevent or treat diseases such as cystic fibrosis, sickle cell disease, and muscular dystrophy. By introducing functional genes to replace mutated ones, medicine shifts from symptom management to direct cures.</p>
-                        <p><strong>Stem cells</strong> serve as the body's raw materials, capable of generating specialized cell types. Embryonic stem cells (ESCs) possess pluripotency, enabling tissue repair for Parkinson's disease, spinal injuries, and diabetes.</p>
-                        <h4 class="font-bold text-navy-900 text-base mt-4">Ethical Framework & Societal Impact:</h4>
-                        <ul class="list-disc pl-5 space-y-1 text-slate-600">
-                            <li><strong>Informed Consent in Germline Editing:</strong> Editing inherited DNA affects offspring who cannot consent.</li>
-                            <li><strong>Embryonic Preservation:</strong> Moral debates regarding the use and destruction of blastocysts in ESC isolation.</li>
-                            <li><strong>Accessibility & Equity:</strong> High cost risks creating genetic disparities between wealthy and low-income demographics.</li>
-                        </ul>
-                    `
-                },
-                'article-1': {
-                    category: 'Topic 1 • Nanotechnology',
-                    title: 'Ethical Issues Concerning Nanotechnology',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">Ethical Issues Concerning Nanotechnology</h3>
-                        <p>Nanotechnology involves manipulating matter at the atomic level (1 to 100 nanometers). Applications span medicine, electronics, and energy production.</p>
-                        <h4 class="font-bold text-navy-900 text-base mt-4">Key Concerns:</h4>
-                        <p><strong>Health & Cytotoxicity:</strong> Free nanoparticles can penetrate biological membranes, lodging in tissue and triggering pulmonary toxicity or cellular stress.</p>
-                        <p><strong>Environmental Fate:</strong> Nano-waste accumulation in aquatic systems poses risks to marine food chains due to persistent bioaccumulation.</p>
-                        <p><strong>Governance:</strong> Regulatory standards lag behind scientific development, necessitating internationally harmonized nano-safety standards.</p>
-                    `
-                },
-                'article-2': {
-                    category: 'Topic 2 • Biodiversity',
-                    title: 'Threats to Biodiversity & The Healthy Society',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">Threats to Philippine Biodiversity</h3>
-                        <p>The Philippines is one of 17 megadiverse countries, harboring a high percentage of global flora and fauna species. However, habitat degradation, illegal logging, overfishing, and climate shifts threaten local ecosystems.</p>
-                        <h4 class="font-bold text-navy-900 text-base mt-4">Societal Impact:</h4>
-                        <p>Ecosystem collapse weakens natural storm defenses, disrupts agriculture, and accelerates zoonotic disease transmission. Community conservation and strict DENR enforcement are essential for ecosystem stability.</p>
-                    `
-                },
-                'article-3': {
-                    category: 'Topic 3 • Agriculture',
-                    title: 'Ethical Implications of GMOs',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">Ethical Implications of Genetically Modified Organisms</h3>
-                        <p>GMOs enhance yield and pest resistance (e.g., Bt Corn) and mitigate nutritional deficits (e.g., Golden Rice rich in Vitamin A).</p>
-                        <h4 class="font-bold text-navy-900 text-base mt-4">Debated Dimensions:</h4>
-                        <p><strong>Ecological Transfer:</strong> Potential cross-pollination between wild species and modified crops.</p>
-                        <p><strong>Corporate Patents:</strong> Farmers depending on patented seeds annually, impacting rural economic sovereignty.</p>
-                    `
-                },
-                'article-4': {
-                    category: 'Topic 4 • Climate Science',
-                    title: 'Climate Change: Environmental or Social Issue?',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">Climate Change: Environmental vs Social Issue</h3>
-                        <p>Climate change transcends atmospheric science; it is fundamentally a social justice issue. Developing nations contribute less to global emissions yet bear the brunt of severe weather events.</p>
-                        <h4 class="font-bold text-navy-900 text-base mt-4">Societal Consequences:</h4>
-                        <p>Forced climate migration, food scarcity, and economic displacement require international loss-and-damage funding and equitable climate policy.</p>
-                    `
-                },
-                'article-5': {
-                    category: 'Supplemental Topic • Automation',
-                    title: 'Human Displacement via Technological Advancement',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">Human Displacement & Automation</h3>
-                        <p>Artificial intelligence and automated robotics are restructuring labor markets globally, automating cognitive and manual tasks.</p>
-                        <h4 class="font-bold text-navy-900 text-base mt-4">Solutions & Policy:</h4>
-                        <p>Addressing technological unemployment requires institutional investment in educational re-skilling, social safety nets, and ethical workplace transition frameworks.</p>
-                    `
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getAttribute('data-title');
+                if (title.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
                 }
-            };
-
-            // Ad Database
-            const adContent = {
-                'ad-1': {
-                    category: 'Commercial Tech Trend Ad',
-                    title: 'AI Neural Diagnostics Platform',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">AI Neural Diagnostics Platform</h3>
-                        <p class="text-xs text-teal-600 font-bold uppercase mb-2">Healthcare Technology Trend</p>
-                        <p>This automated diagnostic suit utilizes deep learning models to screen radiological images, identifying early-stage biological anomalies with high precision.</p>
-                        <div class="bg-slate-100 p-4 rounded-xl text-xs space-y-1 text-slate-700 my-4">
-                            <p><strong>Deployment:</strong> Clinical Trials & Hospital Networks</p>
-                            <p><strong>Ethics Metric:</strong> Physician Oversight Mandated</p>
-                        </div>
-                    `
-                },
-                'ad-2': {
-                    category: 'Commercial Tech Trend Ad',
-                    title: 'Bio-Solar Energy Cells',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">Bio-Solar Grid Cells</h3>
-                        <p class="text-xs text-teal-600 font-bold uppercase mb-2">Renewable Energy Trend</p>
-                        <p>Bio-solar cells integrate photosynthetic proteins directly onto conductive glass surfaces, optimizing urban light conversion into usable micro-grid power.</p>
-                        <div class="bg-slate-100 p-4 rounded-xl text-xs space-y-1 text-slate-700 my-4">
-                            <p><strong>Efficiency:</strong> 40% increased low-light efficiency</p>
-                            <p><strong>Lifecycle:</strong> 100% Recyclable Organic Material</p>
-                        </div>
-                    `
-                },
-                'ad-3': {
-                    category: 'Commercial Tech Trend Ad',
-                    title: 'CRISPR Bio-Engineered Crop Shields',
-                    html: `
-                        <h3 class="text-2xl font-bold text-navy-900 mb-2 serif-text">CRISPR Crop Shields</h3>
-                        <p class="text-xs text-teal-600 font-bold uppercase mb-2">Agri-Tech Trend</p>
-                        <p>A non-transgenic gene editing process enhancing root depth and cellular water retention in rice and grain species for drought-prone regions.</p>
-                        <div class="bg-slate-100 p-4 rounded-xl text-xs space-y-1 text-slate-700 my-4">
-                            <p><strong>Target:</strong> Climate Vulnerable Agricultural Zones</p>
-                            <p><strong>Regulation:</strong> Open-access agricultural patenting model</p>
-                        </div>
-                    `
-                }
-            };
-
-            // Staff Profiles Database
-            const staffContent = {
-                'coder-1': {
-                    category: 'Web Coder Profile',
-                    title: 'Jamer Omandam - Web Developer',
-                    html: `
-                        <h3 class="text-xl font-bold text-navy-900 mb-1">Jamer Omandam</h3>
-                        <p class="text-xs text-teal-600 font-bold uppercase mb-4">Lead Web Developer & UI Designer</p>
-                        <p>Responsible for front-end architecture, user interface structure, responsive layout styling, and client-side JavaScript execution for the website.</p>
-                    `
-                },
-                'coder-2': {
-                    category: 'Web Coder Profile',
-                    title: 'Anjo Cayabyab - Full-Stack & Vercel Integrator',
-                    html: `
-                        <h3 class="text-xl font-bold text-navy-900 mb-1">Anjo Cayabyab</h3>
-                        <p class="text-xs text-teal-600 font-bold uppercase mb-4">Full-Stack Integrator & Deployment Specialist</p>
-                        <p>Responsible for web site optimization, Vercel cloud serverless deployment, modal interaction debugging, and cross-browser responsiveness.</p>
-                    `
-                },
-                'researcher-1': {
-                    category: 'STS Researcher Profile',
-                    title: 'Ivan Blanquiza - Lead STS Researcher',
-                    html: `
-                        <h3 class="text-xl font-bold text-navy-900 mb-1">Ivan Blanquiza</h3>
-                        <p class="text-xs text-indigo-600 font-bold uppercase mb-4">Lead STS Researcher & Fact Checker</p>
-                        <p>Lead author for the primary headline topic (Gene Therapy & Stem Cell Research) and fact-checker across all STS Period 3 learning material.</p>
-                    `
-                },
-                'researcher-2': {
-                    category: 'STS Researcher Profile',
-                    title: 'Renz Barata - Content Analyst',
-                    html: `
-                        <h3 class="text-xl font-bold text-navy-900 mb-1">Renz Barata</h3>
-                        <p class="text-xs text-indigo-600 font-bold uppercase mb-4">Content Analyst & Article Writer</p>
-                        <p>Compiled research on Nanotechnology risk governance and Philippine Biodiversity ecosystem threats.</p>
-                    `
-                },
-                'researcher-3': {
-                    category: 'STS Researcher Profile',
-                    title: 'Monamae Licay - Ethical Issues Specialist',
-                    html: `
-                        <h3 class="text-xl font-bold text-navy-900 mb-1">Monamae Licay</h3>
-                        <p class="text-xs text-indigo-600 font-bold uppercase mb-4">Ethical Issues & Bibliography Specialist</p>
-                        <p>Curated bioethical implications for GMOs, Climate Change social justice dimensions, and APA 7th Edition citations.</p>
-                    `
-                }
-            };
-
-            // Open Modal Helper Function
-            function openModal(data) {
-                if (!data) return;
-                modalCategory.textContent = data.category || 'Information';
-                modalBody.innerHTML = data.html || '<p>No details available.</p>';
-                modalOverlay.classList.remove('hidden');
-                document.body.classList.add('modal-active');
             }
+        }
 
-            // Close Modal Helper Function
-            function closeModal() {
-                modalOverlay.classList.add('hidden');
-                document.body.classList.remove('modal-active');
-            }
-
-            // Bind Article Modal Click Handlers
-            document.querySelectorAll('.open-modal-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = e.currentTarget.getAttribute('data-article-id');
-                    if (articleContent[id]) openModal(articleContent[id]);
-                });
-            });
-
-            // Bind Ad Modal Click Handlers
-            document.querySelectorAll('.open-ad-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = e.currentTarget.getAttribute('data-ad-id');
-                    if (adContent[id]) openModal(adContent[id]);
-                });
-            });
-
-            // Bind Staff Modal Click Handlers
-            document.querySelectorAll('.open-staff-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = e.currentTarget.getAttribute('data-staff-id');
-                    if (staffContent[id]) openModal(staffContent[id]);
-                });
-            });
-
-            // Close Modal Triggers
-            if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-            if (closeModalFooterBtn) closeModalFooterBtn.addEventListener('click', closeModal);
-            if (modalOverlay) {
-                modalOverlay.addEventListener('click', (e) => {
-                    if (e.target === modalOverlay) closeModal();
-                });
-            }
-
-            // Interactive Quiz Logic
-            const submitQuizBtn = document.getElementById('submitQuizBtn');
-            const resetQuizBtn = document.getElementById('resetQuizBtn');
-            const quizForm = document.getElementById('stsQuizForm');
-            const scoreBox = document.getElementById('quizScoreBox');
-
-            if (submitQuizBtn && quizForm && scoreBox) {
-                submitQuizBtn.addEventListener('click', () => {
-                    let score = 0;
-                    const total = 5;
-
-                    for (let i = 1; i <= total; i++) {
-                        const selected = quizForm.querySelector(`input[name="q${i}"]:checked`);
-                        if (selected && selected.value === 'correct') {
-                            score++;
-                        }
-                    }
-
-                    scoreBox.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-amber-100', 'text-amber-800', 'bg-red-100', 'text-red-800');
-
-                    if (score >= 4) {
-                        scoreBox.classList.add('bg-emerald-100', 'text-emerald-800');
-                        scoreBox.innerHTML = `<i class="fa-solid fa-trophy mr-1"></i> Score: <strong>${score}/${total}</strong> - Excellent understanding of STS!`;
-                    } else if (score >= 2) {
-                        scoreBox.classList.add('bg-amber-100', 'text-amber-800');
-                        scoreBox.innerHTML = `<i class="fa-solid fa-circle-info mr-1"></i> Score: <strong>${score}/${total}</strong> - Good try! Review the articles to refine your knowledge.`;
-                    } else {
-                        scoreBox.classList.add('bg-red-100', 'text-red-800');
-                        scoreBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-1"></i> Score: <strong>${score}/${total}</strong> - Recommended to read through the articles and try again.`;
-                    }
-                });
-            }
-
-            if (resetQuizBtn && quizForm && scoreBox) {
-                resetQuizBtn.addEventListener('click', () => {
-                    quizForm.reset();
-                    scoreBox.classList.add('hidden');
-                });
-            }
-
-            // Search Filter Logic for Articles
-            function searchArticles(query) {
-                const q = query.toLowerCase().trim();
-                const cards = document.querySelectorAll('.article-card');
-                cards.forEach(card => {
-                    const title = card.querySelector('.article-title')?.innerText.toLowerCase() || '';
-                    const desc = card.querySelector('.article-desc')?.innerText.toLowerCase() || '';
-                    if (title.includes(q) || desc.includes(q)) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            }
-
-            const searchInput = document.getElementById('searchInput');
-            const mobileSearchInput = document.getElementById('mobileSearchInput');
-
-            if (searchInput) {
-                searchInput.addEventListener('keyup', (e) => searchArticles(e.target.value));
-            }
-            if (mobileSearchInput) {
-                mobileSearchInput.addEventListener('keyup', (e) => searchArticles(e.target.value));
-            }
-
-        });
+        function gradeQuiz() {
+            let score = 0;
+            let total = 3;
+            
+            let q1 = document.querySelector('input[name="q1"]:checked');
+            let q2 = document.querySelector('input[name="q2"]:checked');
+            let q3 = document.querySelector('input[name="q3"]:checked');
+            
+            if (q1 && q1.value === "correct") score++;
+            if (q2 && q2.value === "correct") score++;
+            if (q3 && q3.value === "correct") score++;
+            
+            let resultDiv = document.getElementById('quizResult');
+            resultDiv.innerHTML = `You scored ${score} out of ${total}! ` + (score === 3 ? "🎉 Excellent! Perfect STS knowledge!" : "👍 Good job! Review the articles to get a full score.");
+            resultDiv.className = score === 3 ? "mt-3 text-success fw-bold fs-5" : "mt-3 text-primary fw-bold fs-5";
+        }
     </script>
 </body>
 </html>
